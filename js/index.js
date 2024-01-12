@@ -21,10 +21,30 @@ function divide(a, b) {
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-
-  let result;
+  const formElements = event.target.elements;
+  const formData = new FormData(event.target);
+  const data = Object.fromEntries(formData);
 
   // --v-- write your code here --v--
+  const numberA = Number(formElements.numberA.value);
+  const numberB = Number(formElements.numberB.value);
+  let result;
+  if (formElements.operator.value === "addition") {
+    result = add(numberA, numberB);
+    console.log(formElements.operator.value + " result = " + result);
+  } else if (formElements.operator.value === "subtraction") {
+    result = subtract(numberA, numberB);
+    console.log(formElements.operator.value + " result = " + result);
+  } else if (formElements.operator.value === "multiplication") {
+    result = multiply(numberA, numberB);
+    console.log(formElements.operator.value + " result = " + result);
+  } else if (formElements.operator.value === "division" && numberB != 0) {
+    result = divide(numberA, numberB);
+    console.log(formElements.operator.value + " result = " + result);
+  } else {
+    result = "Mathematical error: Thou shall not divide by zero!";
+    console.log("Mathematical error: Thou shall not divide by zero!");
+  }
 
   // --^-- write your code here --^--
 
